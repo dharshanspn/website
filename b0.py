@@ -11,7 +11,7 @@ repo_owner = os.getenv('REPO_OWNER')
 repo_name = os.getenv('REPO_NAME')
 file_path = os.getenv('FILE_PATH')
 token = os.getenv('TOKEN')
-login_admin_bohit_token= os.getenv('LOGIN_BOT_TOKEN')
+login_admin_bohit_token= os.getenv('LOGIN_TOKEN')
 admin_chatID = os.getenv('ADMIN_CHATID')
 
 
@@ -93,7 +93,7 @@ def refresh_account(account):
         flag_login = login_to_chegg(username, password, driver)
     login_texts = f"both currently active on {account_name}"
     #telegram_both_sendtext(login_texts,user_both_token,user_both_chatID)
-    telegram_both_sendtext(login_texts,login_admin_both_token,admin_chatID)
+    telegram_both_sendtext(login_texts,login_admin_bohit_token,admin_chatID)
 
 
     # Start refreshing for the account
