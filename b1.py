@@ -11,7 +11,7 @@ repo_owner = os.getenv('REPO_OWNER')
 repo_name = os.getenv('REPO_NAME')
 file_path = os.getenv('FILE_PATH')
 token = os.getenv('TOKEN')
-login_admin_bot_token= os.getenv('LOGIN_BOT_TOKEN')
+login_admin_bohit_token= os.getenv('LOGIN_TOKEN')
 admin_chatID = os.getenv('ADMIN_CHATID')
 
 
@@ -70,9 +70,9 @@ for row in data[x:y]:
 def refresh_account(account):
     username = account["Username"]
     password = account["Password"]
-    userID = str(account["userID"])
+    user_both_chatID = str(account["user_both_chatID"])
     account_name = account["Account_name"]
-    user_tkn = account["user_tkn"]  # Same token for all accounts
+    user_both_token = account["user_both_token"]  # Same token for all accounts
     start_time = account["start_time"]
     end_time = account["end_time"]
     accept_option = account["accept_option"]
@@ -91,15 +91,15 @@ def refresh_account(account):
     flag_login = True
     while flag_login:
         flag_login = login_to_chegg(username, password, driver)
-    login_texts = f"Currently active on {account_name}"
-    #telegram_bot_sendtext(login_texts,user_tkn,userID)
-    telegram_bot_sendtext(login_texts,login_admin_bot_token,admin_chatID)
+    login_texts = f"both currently active on {account_name}"
+    #telegram_both_sendtext(login_texts,user_both_token,user_both_chatID)
+    telegram_both_sendtext(login_texts,login_admin_bohit_token,admin_chatID)
 
 
     # Start refreshing for the account
-    refresh_chegg(driver, accept_option, start_time, end_time, user_tkn, userID, account_name)
+    refresh_chegg(driver, accept_option, start_time, end_time, user_both_token, user_both_chatID, account_name)
     #exit_texts = f"Loop exit on {account_name}"
-    #telegram_bot_sendtext(exit_texts,user_tkn,userID)  
+    #telegram_both_sendtext(exit_texts,user_both_token,user_both_chatID)  
 if __name__ == "__main__":
     # Create a process for each account
     processes = []
