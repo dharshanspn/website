@@ -70,9 +70,9 @@ for row in data[x:y]:
 def refresh_account(account):
     username = account["Username"]
     password = account["Password"]
-    user_bot_chatID = str(account["user_bot_chatID"])
+    userID = str(account["userID"])
     account_name = account["Account_name"]
-    user_bot_token = account["user_bot_token"]  # Same token for all accounts
+    user_tkn = account["user_tkn"]  # Same token for all accounts
     start_time = account["start_time"]
     end_time = account["end_time"]
     accept_option = account["accept_option"]
@@ -91,15 +91,15 @@ def refresh_account(account):
     flag_login = True
     while flag_login:
         flag_login = login_to_chegg(username, password, driver)
-    login_texts = f"Bot currently active on {account_name}"
-    #telegram_bot_sendtext(login_texts,user_bot_token,user_bot_chatID)
+    login_texts = f"Currently active on {account_name}"
+    #telegram_bot_sendtext(login_texts,user_tkn,userID)
     telegram_bot_sendtext(login_texts,login_admin_bot_token,admin_chatID)
 
 
     # Start refreshing for the account
-    refresh_chegg(driver, accept_option, start_time, end_time, user_bot_token, user_bot_chatID, account_name)
+    refresh_chegg(driver, accept_option, start_time, end_time, user_tkn, userID, account_name)
     #exit_texts = f"Loop exit on {account_name}"
-    #telegram_bot_sendtext(exit_texts,user_bot_token,user_bot_chatID)  
+    #telegram_bot_sendtext(exit_texts,user_tkn,userID)  
 if __name__ == "__main__":
     # Create a process for each account
     processes = []
